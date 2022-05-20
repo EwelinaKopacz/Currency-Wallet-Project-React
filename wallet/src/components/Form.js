@@ -1,52 +1,81 @@
-import React, {useState} from 'react';
-import currency from '../db/currency.json'
+import React, {useState,useEffect} from 'react';
+import InputField from './InputField';
+import formValidation from './functions/formValidation'
+import currency from '../db/currency.json';
+import inputs from '../db/inputs.json';
 import '../styles/Form.css';
 
 const initState = {
-    currencyType: '',
+    currencytype: '',
     amount: '',
     dayofbuy: '',
     price: '',
 }
 
 const Form = () => {
-    const [inputValue, setInputValue] = useState(initState)
-    console.log(inputValue);
-
-    const handleFieldChange = (e) =>{
-        setInputValue({...inputValue, [e.target.name]: e.target.value})
-    }
+    const [fieldsData, setInputValue] = useState(initState);
+    const [errors, setErrors] = useState({});
+    const [isValid, setIsValid] = useState(false);
 
     const renderCurrencyOptionsList = () =>{
         return currency.map((item) => {
             return (
                 <option key={item.code} value={item.code}>{item.code}</option>
             )
-        })
+        });
     }
+
+    const renderInputsFields = () => {
+        return inputs.map((input) => {
+            return (
+            <InputField
+                key={input.id}
+                name={input.name}
+                value={fieldsData[input.name]}
+                onChange={handleFieldChange}
+                {...input}
+                error={errors[input.name]}
+            />
+            )
+        });
+    }
+
+    const handleFieldChange = (name,value) =>{
+        setInputValue({...fieldsData, [name]: value})
+    }
+
+    const handleSubmit = e =>{
+        e.preventDefault();
+        setErrors(formValidation(fieldsData));
+        setIsValid(true);
+    }
+
+    const clearInputsFields = ()=>{
+        setInputValue(initState);
+    }
+
+    useEffect(() => {
+        console.log(errors);
+        if (Object.keys(errors).length === 0) {
+            //clearInputsFields()
+        }
+    }, [errors])
 
     return (
         <>
             <h2>Dodaj zakupioną walutę:</h2>
-            <form>
+            <form onSubmit={handleSubmit} noValidate>
                 <div>
-                    <label htmlFor="currencyType">Wybierz walutę: </label>
-                    <select id="currencyType" name='currencyType' onChange={handleFieldChange}>
+                    <label htmlFor="currencytype">Wybierz walutę: </label>
+                    <select name='currencytype' id="currencytype" onChange={(e)=>handleFieldChange(e.target.name,e.target.value)}>
                         {renderCurrencyOptionsList()}
                     </select>
                 </div>
+                    {renderInputsFields()}
                 <div>
-                    <label htmlFor='amount'>Ilość: </label>
-                    <input name='amount' id='amount' value={inputValue.amount} onChange={handleFieldChange}/>
+                    <button>DODAJ</button>
                 </div>
-                <div>
-                    <label htmlFor='dayofbuy'>Data zakupu: </label>
-                    <input name='dayofbuy' id='dayofbuy' value={inputValue.dayofbuy} onChange={handleFieldChange}/>
-                </div>
-                <div>
-                    <label htmlFor='price'>Cena zakupu: </label>
-                    <input name='price' id='price' value={inputValue.price} onChange={handleFieldChange}/>
-                </div>
+                {Object.keys(errors).length === 0 && isValid ? <p>Zakup został dodany</p> : null }
         </form>
         </>
     )

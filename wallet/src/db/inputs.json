@@ -1,0 +1,17 @@
+[
+    {
+        "id":1,
+        "name":"amount",
+        "label":"Ilość:"
+    },
+    {
+        "id":2,
+        "name":"dayofbuy",
+        "label":"Data zakupu:"
+    },
+    {
+        "id":3,
+        "name":"price",
+        "label":"Cena:"
+    }
+]
