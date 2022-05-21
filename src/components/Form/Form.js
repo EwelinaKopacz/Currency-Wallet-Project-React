@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState,useEffect} from 'react';
+import {useDispatch } from 'react-redux';
+import { addItemToWallet } from '../../modules/localStorage/localStorage.actions';
 import InputField from './InputField';
-import formValidation from './functions/formValidation'
-import currency from '../db/currency.json';
-import inputs from '../db/inputs.json';
-import '../styles/Form.css';
+import formValidation from '../../functions/formValidation'
+import currency from '../../db/currency.json';
+import inputs from '../../db/inputs.json';
+import '../../styles/Form.css';
 
 const initState = {
     currencytype: '',
@@ -16,6 +19,14 @@ const Form = () => {
     const [fieldsData, setInputValue] = useState(initState);
     const [errors, setErrors] = useState({});
     const [isValid, setIsValid] = useState(false);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (Object.keys(errors).length === 0 && isValid) {
+            dispatch(addItemToWallet(fieldsData))
+            clearInputsFields()
+        }
+    }, [errors])
 
     const renderCurrencyOptionsList = () =>{
         return currency.map((item) => {
@@ -54,12 +65,6 @@ const Form = () => {
         setInputValue(initState);
     }
 
-    useEffect(() => {
-        console.log(errors);
-        if (Object.keys(errors).length === 0) {
-            //clearInputsFields()
-        }
-    }, [errors])
 
     return (
         <>
