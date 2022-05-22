@@ -1,0 +1,19 @@
+.table__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.table__container {
+    border-collapse: collapse;
+}
+
+.table__header {
+    border: 2px solid white;
+    width: 13%;
+}
+
+.table__row,.table__data {
+     border: 1px solid white;;
+}

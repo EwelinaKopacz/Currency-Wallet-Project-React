@@ -7,7 +7,7 @@ const localStorageReducer = (state = initState, action) => {
         case types.ADD_ITEM_TO_WALLET:
             return [
                 ...state,
-                action.payload,
+                action.data,
             ]
         default:
             return state;

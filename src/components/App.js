@@ -1,5 +1,6 @@
 import '../styles/App.css';
 import Form from './Form/Form';
+import Table from './Table/Table'
 import store from '../store';
 import { Provider } from 'react-redux';
 
@@ -10,11 +11,10 @@ function App() {
         <header className="App-header">
             Currency Wallet
         </header>
-        <section>
-          <Form/>
-        </section>
+        <Form/>
+        <Table/>
       </div>
-      </Provider>
+    </Provider>
   );
 }
 

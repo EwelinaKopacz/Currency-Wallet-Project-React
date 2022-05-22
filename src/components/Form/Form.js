@@ -67,8 +67,8 @@ const Form = () => {
 
 
     return (
-        <>
-            <h2>Dodaj zakupioną walutę:</h2>
+        <section>
+            <h2>Dodaj zakupioną walutę</h2>
             <form onSubmit={handleSubmit} noValidate>
                 <div>
                     <label htmlFor="currencytype">Wybierz walutę: </label>
@@ -81,8 +81,8 @@ const Form = () => {
                     <button>DODAJ</button>
                 </div>
                 {Object.keys(errors).length === 0 && isValid ? <p>Zakup został dodany</p> : null }
-        </form>
-        </>
+            </form>
+        </section>
     )
 
 }
