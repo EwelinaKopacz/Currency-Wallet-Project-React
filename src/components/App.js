@@ -1,7 +1,7 @@
 import '../styles/App.css';
 import Form from './Form/Form';
-import Table from './Table/Table'
-import store from '../store';
+import Table from './Table/Table';
+import store from '../modules/store';
 import { Provider } from 'react-redux';
 
 function App() {
