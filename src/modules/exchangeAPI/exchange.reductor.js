@@ -1,7 +1,7 @@
 import types from './exchange.types';
 
 const initState = {
-    rates: {}
+    rates: []
 };
 
 const exchangeApiReductor = (state = initState, action) => {
@@ -9,7 +9,12 @@ const exchangeApiReductor = (state = initState, action) => {
         case types.GET_LATEST_EXCHANGE_RATE:
             return {
                 ...state,
-                rates:action.payload.rates
+                rates:[
+                    ...state.rates,
+                    action.payload
+                    // from:action.payload.data.query.from,
+                    // result:action.payload.data.result,
+                ]
             }
         default:
             return state;

@@ -3,19 +3,19 @@ import ExchangeRateAPI from "./exchange.api";
 
 const askAPI = new ExchangeRateAPI();
 
-export const setExchangeRate = ({rates}) => {
+export const setExchangeRate = (symbol,{result}) => {
     return {
         type: types.GET_LATEST_EXCHANGE_RATE,
         payload:{
-            rates
+            [symbol]:result
         }
     }
 
 }
 
-export const loadExchangeRate = (symbols) => (dispatch) => {
-    askAPI.getExchangeRate(symbols)
-    .then(resp => dispatch(setExchangeRate(resp)))
+export const loadExchangeRate = (symbol) => (dispatch) => {
+    askAPI.getExchangeRate(symbol)
+    .then(resp => dispatch(setExchangeRate(symbol,resp)))
 }
 
 

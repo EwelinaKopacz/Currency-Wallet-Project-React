@@ -1,18 +1,17 @@
 class ExchangeRateAPI {
-    url = 'https://api.apilayer.com/fixer/';
+    url = 'https://api.apilayer.com/exchangerates_data/';
 
-    getExchangeRate(symbols) {
+    getExchangeRate(symbol) {
         const myHeaders = new Headers();
-        myHeaders.append("apikey", "tAQziVqzbgSzGsOMxhMXc8MjFG22ssae");
+        myHeaders.append("apikey", "w0GkvoTWeFwGOXWnMEyqeURNpoB3H6oL");
 
         const requestOptions = {
             headers: myHeaders
         }
 
-        return fetch(`${this.url}latest?symbols=${symbols}&base=PLN`,requestOptions)
-            //.then(response => response.text())
+        // return fetch(`${this.url}latest?symbols=${symbols}&base=PLN`,requestOptions)
+        return fetch(`${this.url}convert?to=pln&from=${symbol}&amount=1`,requestOptions)
             .then(response => response.json())
-            //.then(result => console.log(result))
             .catch(error => console.log('error', error));
     }
 }
