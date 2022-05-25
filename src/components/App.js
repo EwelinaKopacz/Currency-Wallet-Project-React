@@ -1,4 +1,5 @@
 import '../styles/App.css';
+import Form from './Form/Form';
 
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
       <header className="App-header">
           Currency Wallet
       </header>
+      <Form/>
     </div>
   );
 }
