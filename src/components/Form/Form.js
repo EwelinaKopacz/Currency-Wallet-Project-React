@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState,useEffect} from 'react';
-//import {useDispatch } from 'react-redux';
-//import { addItemToWallet } from '../../modules/localStorage/localStorage.actions';
+import {useDispatch } from 'react-redux';
+import { addItemToWallet } from '../../modules/wallet/wallet.actions';
 import InputField from './InputField';
 import formValidation from '../../functions/formValidation'
 import currency from '../../db/currency.json';
@@ -16,10 +16,9 @@ const initState = {
 }
 
 const Form = () => {
-    const [fieldsData, setFieldsData] = useState(initState);
-    const [error, setError] = useState({});
-    //const dispatch = useDispatch();
-
+    const [fieldsData, setInputValue] = useState(initState);
+    const [errors, setErrors] = useState({});
+    const dispatch = useDispatch();
 
     const renderCurrencyOptionsList = () =>{
         return currency.map((item) => {
@@ -38,29 +37,31 @@ const Form = () => {
                 value={fieldsData[input.name]}
                 onChange={handleFieldChange}
                 {...input}
-                error={error[input.name]}
+                error={errors[input.name]}
             />
             )
         });
     }
 
     const handleFieldChange = (name,value) =>{
-        setFieldsData({...fieldsData, [name]: value})
-    }
-
-    const clearInputsFields = () =>{
-        setFieldsData(initState);
+        setInputValue({...fieldsData, [name]: value})
     }
 
     const handleSubmit = e =>{
         e.preventDefault();
-        const error = formValidation(fieldsData);
-        if(error.length === 0){
-            // dispatch(addItemToWallet(fieldsData))
-            clearInputsFields();
+        const err = formValidation(fieldsData);
+
+        if(Object.keys(err).length === 0){
+            dispatch(addItemToWallet(fieldsData))
+            clearInputsFields()
         }
-        setError(error)
+        setErrors(err);
     }
+
+    const clearInputsFields = ()=>{
+        setInputValue(initState);
+    }
+
 
     return (
         <section>
@@ -74,9 +75,8 @@ const Form = () => {
                 </div>
                     {renderInputsFields()}
                 <div>
-                    <button >DODAJ</button>
+                    <button>DODAJ</button>
                 </div>
-                {/* {dataSent ? <p>Zakup został dodany</p> : null } */}
             </form>
         </section>
     )
