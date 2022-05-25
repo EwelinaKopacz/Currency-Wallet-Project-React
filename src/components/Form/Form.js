@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState,useEffect} from 'react';
+import React, {useState} from 'react';
 import {useDispatch } from 'react-redux';
 import { addItemToWallet } from '../../modules/wallet/wallet.actions';
+import { loadExchangeRate } from '../../modules/exchangeAPI/exchangeAPI.actions';
 import InputField from './InputField';
 import formValidation from '../../functions/formValidation'
 import currency from '../../db/currency.json';
@@ -53,10 +54,15 @@ const Form = () => {
 
         if(Object.keys(err).length === 0){
             dispatch(addItemToWallet(fieldsData))
+            dispatch(loadExchangeRate(fieldsData.currencytype))
+            //checkExchangeRate();
             clearInputsFields()
         }
         setErrors(err);
     }
+    console.log(fieldsData.currencytype);
+
+    // const checkExchangeRate = () =>
 
     const clearInputsFields = ()=>{
         setInputValue(initState);
