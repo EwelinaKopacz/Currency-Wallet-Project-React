@@ -55,19 +55,14 @@ const Form = () => {
         if(Object.keys(err).length === 0){
             dispatch(addItemToWallet(fieldsData))
             dispatch(loadExchangeRate(fieldsData.currencytype))
-            //checkExchangeRate();
             clearInputsFields()
         }
         setErrors(err);
     }
-    console.log(fieldsData.currencytype);
-
-    // const checkExchangeRate = () =>
 
     const clearInputsFields = ()=>{
         setInputValue(initState);
     }
-
 
     return (
         <section>
