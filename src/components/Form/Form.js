@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState} from 'react';
-import {useDispatch } from 'react-redux';
+import {useDispatch, useSelector } from 'react-redux';
 import { addItemToWallet } from '../../modules/wallet/wallet.actions';
 import { loadExchangeRate } from '../../modules/exchangeAPI/exchangeAPI.actions';
 import InputField from './InputField';
@@ -19,6 +19,8 @@ const initState = {
 const Form = () => {
     const [fieldsData, setInputValue] = useState(initState);
     const [errors, setErrors] = useState({});
+    const rateList = useSelector(store=>store.exchange);
+    console.log('rateListForm',rateList)
     const dispatch = useDispatch();
 
     const renderCurrencyOptionsList = () =>{
@@ -54,10 +56,18 @@ const Form = () => {
 
         if(Object.keys(err).length === 0){
             dispatch(addItemToWallet(fieldsData))
-            dispatch(loadExchangeRate(fieldsData.currencytype))
+            checkRateList(fieldsData.currencytype)
             clearInputsFields()
         }
         setErrors(err);
+    }
+
+    const checkRateList = (currSymbol) =>{
+        const symbol = rateList.filter((item) => item[currSymbol]);
+        if(symbol.length === 0){
+            dispatch(loadExchangeRate(currSymbol))
+        }
+        return false
     }
 
     const clearInputsFields = ()=>{

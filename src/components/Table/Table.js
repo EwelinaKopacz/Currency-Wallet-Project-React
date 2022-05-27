@@ -7,7 +7,7 @@ const Table = () =>{
     const walletList = useSelector(store=>store.wallet);
     const rateList = useSelector(store=>store.exchange);
     console.log('walletlist',walletList);
-    console.log('currencyrate', rateList);
+    console.log('ratelist', rateList);
 
     const renderColumnNames = () =>{
         return columnNames.map((colName)=> <th className='table__header'>{colName}</th>)
@@ -22,19 +22,20 @@ const Table = () =>{
                     <td className='table__data'>{item.dayofbuy}</td>
                     <td className='table__data'>{item.price}</td>
                     <td className='table__data'>{renderActualRate(item.currencytype)}</td>
+                    <td className='table__data'>{renderActualValue(item.currencytype,item.amount)}</td>
                 </tr>
             )
         })
     }
 
-    const renderActualRate = (currencyType)=>{
-        return rateList.map((item) => {
-            for (const [key, value] of Object.entries(item)) {
-                if(key === currencyType){
-                    return value.toFixed(2);
-                }
-            }
-        })
+    const renderActualRate = (currencyType) => {
+        const result = rateList.filter((item) => item[currencyType])
+        return result.map((el) => Number(el[currencyType].toFixed(2)))
+    }
+
+    const renderActualValue = (currencyType,currencyAmount) =>{
+        const result = rateList.filter((item) => item[currencyType])
+        return result.map((el) => Number(el[currencyType] * currencyAmount).toFixed(2))
     }
 
     return(
