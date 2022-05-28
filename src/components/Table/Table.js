@@ -23,6 +23,7 @@ const Table = () =>{
                     <td className='table__data'>{item.price}</td>
                     <td className='table__data'>{renderActualRate(item.currencytype)}</td>
                     <td className='table__data'>{renderActualValue(item.currencytype,item.amount)}</td>
+                    <td className='table__data'>{renderActualProfit(item.currencytype,item.amount,item.price)}</td>
                 </tr>
             )
         })
@@ -30,12 +31,20 @@ const Table = () =>{
 
     const renderActualRate = (currencyType) => {
         const result = rateList.filter((item) => item[currencyType])
+        console.log(result);
         return result.map((el) => Number(el[currencyType].toFixed(2)))
     }
 
-    const renderActualValue = (currencyType,currencyAmount) =>{
+    const renderActualValue = (currencyType,currencyAmount) => {
         const result = rateList.filter((item) => item[currencyType])
         return result.map((el) => Number(el[currencyType] * currencyAmount).toFixed(2))
+    }
+
+    const renderActualProfit = (currencyType,currencyAmount,currencyPrice) => {
+        const prevProfit = (currencyAmount * currencyPrice).toFixed(2);
+        const actualProfit = renderActualValue(currencyType,currencyAmount);
+        return actualProfit.map((item) => Number(item - prevProfit).toFixed(2));
+
     }
 
     return(
