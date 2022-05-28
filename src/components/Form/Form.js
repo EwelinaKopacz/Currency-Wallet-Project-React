@@ -20,7 +20,6 @@ const Form = () => {
     const [fieldsData, setInputValue] = useState(initState);
     const [errors, setErrors] = useState({});
     const rateList = useSelector(store=>store.exchange);
-    console.log('rateListForm',rateList)
     const dispatch = useDispatch();
 
     const renderCurrencyOptionsList = () =>{

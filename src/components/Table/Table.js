@@ -6,8 +6,6 @@ import '../../styles/Table.css';
 const Table = () =>{
     const walletList = useSelector(store=>store.wallet);
     const rateList = useSelector(store=>store.exchange);
-    console.log('walletlist',walletList);
-    console.log('ratelist', rateList);
 
     const renderColumnNames = () =>{
         return columnNames.map((colName)=> <th className='table__header'>{colName}</th>)
@@ -31,7 +29,6 @@ const Table = () =>{
 
     const renderActualRate = (currencyType) => {
         const result = rateList.filter((item) => item[currencyType])
-        console.log(result);
         return result.map((el) => Number(el[currencyType].toFixed(2)))
     }
 
