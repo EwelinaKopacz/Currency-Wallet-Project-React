@@ -1,5 +1,5 @@
 class ExchangeRateAPI {
-    url = 'https://api.apilayer.com/exchangerates_data/';
+    url = 'https://api.apilayer.com/fixer/';
 
     getExchangeRate(symbol) {
         const myHeaders = new Headers();

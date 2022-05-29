@@ -1,9 +1,37 @@
 [
-    "Waluta",
-    "Ilość",
-    "Data zakupu",
-    "Cena zakupu",
-    "Obecny kurs",
-    "Obecna wartość",
-    "Zysk/Strata"
+    {
+        "name":"Waluta",
+        "id": "1"
+    },
+
+    {
+        "name":"Ilość",
+        "id": "2"
+    },
+
+    {
+        "name":"Data zakupu",
+        "id": "3"
+    },
+
+    {
+        "name":"Cena zakupu",
+        "id": "4"
+    },
+
+    {
+        "name":"Obecny kurs",
+        "id": "5"
+    },
+
+    {
+        "name":"Obecna wartość",
+        "id": "6"
+    },
+
+    {
+        "name":"Zysk/Strata",
+        "id": "7"
+    }
+
 ]

@@ -6,15 +6,17 @@ import '../../styles/Table.css';
 const Table = () =>{
     const walletList = useSelector(store=>store.wallet);
     const rateList = useSelector(store=>store.exchange);
+    console.log('walletList', walletList);
+    console.log('ratetList', rateList);
 
     const renderColumnNames = () =>{
-        return columnNames.map((colName)=> <th className='table__header'>{colName}</th>)
+        return columnNames.map((item)=> <th className='table__header' key={item.id}>{item.name}</th>)
     }
 
     const renderData = () =>{
         return walletList.map((item) => {
             return(
-                <tr className='table__row'>
+                <tr className='table__row' key={item.id}>
                     <td className='table__data'>{item.currencytype}</td>
                     <td className='table__data'>{item.amount}</td>
                     <td className='table__data'>{item.dayofbuy}</td>

@@ -2,11 +2,13 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector } from 'react-redux';
 import { addItemToWallet } from '../../modules/wallet/wallet.actions';
-import { loadExchangeRate } from '../../modules/exchangeAPI/exchangeAPI.actions';
+import { loadExchangeRate,updateLatestExchangeRate } from '../../modules/exchangeAPI/exchangeAPI.actions';
 import InputField from './InputField';
 import formValidation from '../../functions/formValidation'
+import { getToday } from '../../functions/getToday';
 import currency from '../../db/currency.json';
 import inputs from '../../db/inputs.json';
+import {v4 as uuid} from 'uuid';
 import '../../styles/Form.css';
 
 const initState = {
@@ -17,10 +19,14 @@ const initState = {
 }
 
 const Form = () => {
-    const [fieldsData, setInputValue] = useState(initState);
+    const [fieldsData, setInputData] = useState(initState);
     const [errors, setErrors] = useState({});
     const rateList = useSelector(store=>store.exchange);
     const dispatch = useDispatch();
+    const today = "2022-05-27"
+    console.log(today);
+    // const today = getToday().toString();
+    // console.log(today);
 
     const renderCurrencyOptionsList = () =>{
         return currency.map((item) => {
@@ -46,7 +52,7 @@ const Form = () => {
     }
 
     const handleFieldChange = (name,value) =>{
-        setInputValue({...fieldsData, [name]: value})
+        setInputData({...fieldsData, [name]: value})
     }
 
     const handleSubmit = e =>{
@@ -54,8 +60,8 @@ const Form = () => {
         const err = formValidation(fieldsData);
 
         if(Object.keys(err).length === 0){
-            dispatch(addItemToWallet(fieldsData))
-            checkRateList(fieldsData.currencytype)
+            dispatch(addItemToWallet({...fieldsData, id:uuid()}))
+            checkRateList(fieldsData.currencytype,today)
             clearInputsFields()
         }
         setErrors(err);
@@ -63,14 +69,16 @@ const Form = () => {
 
     const checkRateList = (currSymbol) =>{
         const symbol = rateList.filter((item) => item[currSymbol]);
+        console.log(symbol);
         if(symbol.length === 0){
             dispatch(loadExchangeRate(currSymbol))
-        }
-        return false
+        }else if(symbol.map((item)=>item.date !== today)){
+            dispatch(updateLatestExchangeRate(currSymbol))
+        }return false
     }
 
     const clearInputsFields = ()=>{
-        setInputValue(initState);
+        setInputData(initState);
     }
 
     return (
