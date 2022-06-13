@@ -6,3 +6,11 @@ export const addItemToWallet = (data) => {
         data
     }
 }
+
+export const removeItemFromWallet = (id) =>{
+    return {
+        type:types.REMOVE_ITEM_FROM_WALLET,
+        id
+
+    }
+}
