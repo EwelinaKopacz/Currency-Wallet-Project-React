@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import {useDispatch, useSelector } from 'react-redux';
 import { addItemToWallet } from '../../modules/wallet/wallet.actions';
 import { loadExchangeRate} from '../../modules/exchangeAPI/exchangeAPI.actions';
@@ -21,9 +21,16 @@ const initState = {
 const Form = () => {
     const [fieldsData, setInputData] = useState(initState);
     const [errors, setErrors] = useState({});
+    const walletList = useSelector(store=>store.wallet)
     const rateList = useSelector(store=>store.exchange);
     const dispatch = useDispatch();
     const today = getToday().toString();
+
+    useEffect(()=>{
+        if(walletList.length > 0){
+            walletList.map(item => checkRateList(item.currencytype,today))
+        }
+    },[])
 
     const renderCurrencyOptionsList = () =>{
         return currency.map((item) => {

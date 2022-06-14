@@ -12,7 +12,6 @@ const walletReductor = (state=initState,action) => {
         case types.REMOVE_ITEM_FROM_WALLET:
             const newState = state.filter(item => item.id !== action.id)
             return newState;
-
         default:
             return state;
     }
