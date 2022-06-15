@@ -33,20 +33,18 @@ const Table = () =>{
 
     const renderActualRate = (curr) => {
         if(rateListToday){
-            for (const [key, value] of Object.entries(rateListToday)) {
-                if(key === curr){
-                    return value.toFixed(4);
-                }
+            const value = rateListToday[curr];
+            if(value) {
+                return value.toFixed(2)
             }
         }
     }
 
     const renderActualValue = (curr,amount) => {
         if(rateListToday){
-            for (const [key, value] of Object.entries(rateListToday)) {
-                if(key === curr){
-                    return (value * amount).toFixed(2)
-                }
+            const value = rateListToday[curr];
+            if(value) {
+                return (value * amount).toFixed(2)
             }
         }
     }
@@ -54,8 +52,8 @@ const Table = () =>{
     const renderActualProfit = (curr,amount,price) => {
         const actualProfit = renderActualValue(curr,amount);
         const prevProfit = (amount * price).toFixed(2);
-        if(actualProfit === undefined){ // dobry sposob na rozwiazanie problemu z nan jak czekamy na api?
-            return " "
+        if(actualProfit === undefined){ 
+            return null
         }
         return (actualProfit - prevProfit).toFixed(2);
     }
