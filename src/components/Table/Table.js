@@ -25,7 +25,7 @@ const Table = () =>{
                     <td className='table__data'>{renderActualRate(item.currencytype)}</td>
                     <td className='table__data'>{renderActualValue(item.currencytype,item.amount)}</td>
                     <td className='table__data'>{renderActualProfit(item.currencytype,item.amount,item.price)}</td>
-                    <td><button onClick={e => handleRemove(item.id)}>Usuń</button></td>
+                    <td><button className='table__btn'onClick={e => handleRemove(item.id)}>Usuń</button></td>
                 </tr>
             )
         })
@@ -64,18 +64,20 @@ const Table = () =>{
 
     if(walletList.length > 0) {
         return(
-            <section className='table__wrapper'>
-                <h2>Posiadane waluty</h2>
-                <table className='table__container'>
-                    <thead className='table__head'>
-                        <tr className='table__row'>
-                            {renderColumnNames()}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {renderData()}
-                    </tbody>
-                </table>
+            <section className='table__section'>
+                <div className='table__wrapper'>
+                    <h2 className='table__title'>Posiadane waluty</h2>
+                    <table className='table__container'>
+                        <thead className='table__head'>
+                            <tr>
+                                {renderColumnNames()}
+                            </tr>
+                        </thead>
+                        <tbody className='table__body'>
+                            {renderData()}
+                        </tbody>
+                    </table>
+                </div>
             </section>
         )
     } else {

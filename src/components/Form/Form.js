@@ -35,7 +35,7 @@ const Form = () => {
     const renderCurrencyOptionsList = () =>{
         return currency.map((item) => {
             return (
-                <option key={item.code} value={item.code}>{item.code}</option>
+                <option className='input__option' key={item.code} value={item.code}>{item.code}</option>
             )
         });
     }
@@ -83,20 +83,22 @@ const Form = () => {
     }
 
     return (
-        <section>
-            <h2>Dodaj zakupioną walutę</h2>
-            <form onSubmit={handleSubmit} noValidate>
-                <div>
-                    <label htmlFor="currencytype">Wybierz walutę: </label>
-                    <select name='currencytype' id="currencytype" onChange={(e)=>handleFieldChange(e.target.name,e.target.value)}>
-                        {renderCurrencyOptionsList()}
-                    </select>
-                </div>
-                    {renderInputsFields()}
-                <div>
-                    <button>DODAJ</button>
-                </div>
-            </form>
+        <section className='form__section'>
+            <div className='form__wrapper'>
+                <h2 className='form__title'>Dodaj zakupioną walutę</h2>
+                <form onSubmit={handleSubmit} noValidate className='form__container'>
+                    <p className='input__box'>
+                        <label htmlFor="currencytype">Wybierz walutę: </label>
+                        <select className='input__select' name='currencytype' id="currencytype" onChange={(e)=>handleFieldChange(e.target.name,e.target.value)}>
+                            {renderCurrencyOptionsList()}
+                        </select>
+                    </p>
+                        {renderInputsFields()}
+                    <p className='input__button'>
+                        <button className='form__btn'>DODAJ</button>
+                    </p>
+                </form>
+            </div>
         </section>
     )
 

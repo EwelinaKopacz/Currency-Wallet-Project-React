@@ -4,15 +4,15 @@ const formValidation = (fieldValues) => {
     const regExpDay = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
 
     if(!fieldValues.amount.match(regExpAmountPrice)){
-        errors.amount = "Ilość jest wymagana (uzywaj kropki)"
+        errors.amount = "Ilość jest wymagana."
     }
 
     if(!fieldValues.price.match(regExpAmountPrice)){
-        errors.price = "Cena jest wymagana (uzywaj kropki)"
+        errors.price = "Cena jest wymagana."
     }
 
     if(!fieldValues.dayofbuy.match(regExpDay)){
-        errors.dayofbuy = "Dzień zakupu jest wymagany format RRRR-MM-DD"
+        errors.dayofbuy = "Dzień zakupu jest wymagany."
     }
 
     return errors;

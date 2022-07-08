@@ -1,21 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../../styles/Form.css';
 
 
 const InputField = (props) => {
     const {name,label,value,error,onChange, ...inputProps} = props;
 
     return (
-        <div>
-            <label htmlFor={name}>{label}</label>
+        <p className='input__box'>
+            <label htmlFor={name} className='input__label'>{label}</label>
             <input
+                className='input__value'
                 name={name}
                 value={value}
                 onChange={(e)=> onChange(e.target.name,e.target.value)}
                 {...inputProps}
             />
-            <p>{error}</p>
-        </div>
+            <span className='input__error'>{error}</span>
+        </p>
     )
 }
 

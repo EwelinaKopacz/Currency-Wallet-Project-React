@@ -1,0 +1,93 @@
+.form__wrapper{
+    max-width: 1000px;
+    margin:0 auto;
+    margin-bottom: 30px;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #E1EDFE;
+    border-radius: 25px;
+    border: 1px solid #B8D4FB ;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.form__title{
+    width: 30%;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.form__container{
+    width: 60%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap:5px;
+}
+
+
+.input__box{
+    width: 250px;
+    justify-self:center;
+    align-self :center;
+    padding:7px;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px .5px .5px, rgba(0, 0, 0, 0.12) 0px .5px 0px;
+}
+
+.input__value{
+    border:none;
+    background-color: transparent;
+    border-bottom: 0.5px solid #264979;
+}
+
+.input__value:focus, .input__select:focus{
+    outline: none;
+    border-bottom: 1.3px solid #264979;
+}
+
+.input__error{
+    position: absolute;
+    top:125%;
+    left:0%;
+    color:#AF0606;
+}
+
+.input__button{
+    grid-column: 1/3;
+}
+
+.form__btn{
+    width: 50%;
+    padding: 6px 0;
+    background-color:rgba(209, 192, 234, 0.3);
+    border-radius: 20px;
+    border:1px solid #795ebc;
+    color:#795ebc;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.form__btn:hover{
+    background-color:rgba(209, 192, 234, 0.6);
+}
+
+.input__select{
+    position: relative;
+    width: 120px;
+    border: none;
+    border-bottom: 0.5px solid #264979;
+    text-transform: capitalize;
+    color: rgb(0, 0, 0);
+    background: transparent;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    outline:none;
+}
