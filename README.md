@@ -1,43 +1,79 @@
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+# Currency Wallet - React
 
-&nbsp;
+## Table of Contents
+1. [About the project](#about-the-project)
+2. [How to see it](#how-to-see-it)
+3. [Technologies](#technologies)
+4. [Solutions](#solutions)
+5. [Development](#development)
+6. [Project preview](#project-preview)
+7. [Contact](#feel-free-to-contact-me)
+8. [Sources](#sources)
+9. [Thanks](#thanks-for-project-and-support-to-Mateusz-Bogolubow)
 
+## About the project
+The aim of the project was to create application "Currency Wallet" which calculate profit or loss owned currencies. Application has a feature, which allows to add a new currency by using a form. After added a new currency, use will see it in a table. Actual rate is fetching by using API (apilayer.com). User can remove picked currency, as well. The data in form are validated. After refreshing a page (for example next day) the actual rate will be check again.
 
-# Portfel walutowy
+I used Redux to manage the state. I created two modules:
+1. exchange API - a module (store) for data from API
+2. wallet - a module (store) for data in localStorage
 
-Zbuduj aplikację, która będzie obliczać potencjalny zysk lub stratę z posiadanych walut.
+I combied stores using combineReducers helper function.
 
-Użytkownik ma mieć możliwość wprowadzenia poniższych informacji:
-- rodzaj posiadanej waluty
-- jej ilość
-- data zakupu
-- cena zakupu (ten element można zautomatyzować – kiedy zostanie wybrana data, to cena uzupełni się automatycznie przy pomocy API. Oczywiście użytkownik będzie mógł tę cenę zmodyfikować). 
+```
+const rootReducers = combineReducers({
+    wallet:walletReductor,
+    exchange:exchageReductor
+})
+```
 
-Zapisuj te informacje w [localStorage](https://frontstack.pl/czym-jest-local-storage-i-jak-uzywac/) jako tablicę przechowującą obiekty. Po uruchomieniu strony zawsze sprawdzaj, czy w LS są już przechowywane jakieś dane. Jeśli tak, wczytuj je do widoku aplikacji.
+Column names, inputs and currency data are stored in json files, so it is easy to manage it.
 
-Następnie przy pomocy [API](https://exchangeratesapi.io/) pobieraj aktualne kursy walut użytkownika i przypisuj odpowiednią wartość do każdego elementu w tablicy.
-
-Wynik działania aplikacji mógłby się sprowadzać do poniższej tabeli:
-
-| Waluta | Ilość | Data zakupu | Cena zakupu | Obecny kurs | Obecna wartość | Zysk/Strata |
-| --- | --- | --- | --- | --- | --- | --- |
-| EUR | 100 | 2020-01-01 | 4.38 | 4.49 | 449.00 | 11.00 (+2.5%) |
-| EUR | 100 | 2020-03-01 | 4.48 | 4.49 | 449.00 |  1.00 (+0.2%) |
-| USD | 100 | 2020-03-01 | 3.91 | 3.71 | 371.00 |  -20.00 (-5.2%) |
-
-Stanem zarządzaj przy pomocy Reduxa, wykorzystując oddzielny Magazyn dla danych z localStorage ([przykład](https://dev.to/link2twenty/react-redux-and-localstorage-2lih)) oraz dla API. Całość połącz przy pomocy `.combineReducers()`.
-
-Stwórz projekt tak, aby każdy z elementów w łatwy sposób można było przenieść do innej aplikacji.
-
-
-PS Jeśli uznasz, że Twoja aplikacja powinna być bardziej rozbudowana, możesz przechowywać historię sprawdzeń danej waluty w localStorage i [generować wykres](https://github.com/jerairrest/react-chartjs-2) prezentujący poziom zysków lub strat dla danej pozycji.
+While undertaking this project, to key was to create each element in that way to possible use it in another application, so I tried to do it.
 
 
+## How to see it
+I have prepared a short video, to show how my application works. Please click the link below. You can check the screenshot, which are attached below, as well.
+* [Currency Wallet - React | Ewelina Kopacz](https://www.awesomescreenshot.com/video/9931403?key=5d52dfedf4045f27a46d20fb8ebeecfd)
 
-&nbsp;
+## Technologies:
+* JavaScript
+* React
+* Redux
+* HTML
+* CSS
+* Desktop only version
 
-> ⭐ ***README** to coś więcej niż opis. Poprzez nie **pokazujesz swoje mocne strony** – swoją dokładność, sposób myślenia i podejście do rozwiązywania problemów. Niech Twoje README pokaże, że masz **świetne predyspozycje do rozwoju!***
-> 
-> 🎁 *Zacznij od razu. Skorzystaj z **[szablonu README i wskazówek](https://github.com/devmentor-pl/readme-template)**.* 
+## Solutions
+When creating this project I had an opportunity to learn/practice :
+* flux archtecture: patterns: "the observer pattern"
+* redux:
+    * store
+    * actions
+    * reducers
+    * provider
+    * combine reducers
+    * thunk and API
+    * Redux DevTools extension
+* correct splitting code into files
+
+### Development
+I am going to develop application by adding additional functionalities such as:
+* fetching the rate automatically based on date of buy, and a user will keep possibility to change the rate
+* confirmation component before remove a currency
+
+### Project preview
+Currency wallet
+![Project-preview](./preview/preview1.png)
+
+### Feel free to contact me:
+* [Linkedin](https://www.linkedin.com/in/ewelina-kopacz-929559100/) - Ewelina Kopacz
+
+### Sources:
+* [How to persist Redux state in local Storage](https://www.geeksforgeeks.org/how-to-persist-redux-state-in-local-storage-without-any-external-library/)
+* [Redux Thunk w aplikacjach React](https://frontstack.pl/redux-thunk-w-aplikacjach-react/)
+* [Immutability in React and Redux](https://daveceddia.com/react-redux-immutability-guide/)
+* [A Simple Explanation on Updating Redux Store](https://levelup.gitconnected.com/a-simple-explanation-on-updating-redux-store-8e9bc6c8e279)
+
+### Thanks for project and support to Mateusz Bogolubow:
+* Mentor i Trener Programowania JavaScript - [DevMentor](https://devmentor.pl/) - Mateusz Bogolubow
