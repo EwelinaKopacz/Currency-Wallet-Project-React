@@ -9,7 +9,7 @@ function App() {
     <Provider store={store}>
       <div className="App">
         <header className="App-header">
-            Currency Wallet
+            Portfel walutowy
         </header>
         <Form/>
         <Table/>

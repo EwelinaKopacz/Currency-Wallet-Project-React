@@ -3,7 +3,7 @@ class ExchangeRateAPI {
 
     getExchangeRate(symbol) {
         const myHeaders = new Headers();
-        myHeaders.append("apikey", "AC3yMIgz32bQPjxC0ZfpudB6Thg2w8Zi");
+        myHeaders.append("apikey", "w0GkvoTWeFwGOXWnMEyqeURNpoB3H6oL");
 
         const requestOptions = {
             headers: myHeaders
