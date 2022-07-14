@@ -12,13 +12,13 @@
 9. [Thanks](#thanks-for-project-and-support-to-Mateusz-Bogolubow)
 
 ## About the project
-The aim of the project was to create application "Currency Wallet" which calculate profit or loss owned currencies. Application has a feature, which allows to add a new currency by using a form. After added a new currency, use will see it in a table. Actual rate is fetching by using API (apilayer.com). User can remove picked currency, as well. The data in form are validated. After refreshing a page (for example next day) the actual rate will be check again.
+The aim of the project was to create an application "Currency Wallet" which calculates profit or loss owned currencies. The Application has a feature, which allows to add a new currency by using a form. After adding a new currency, user will see it in the table. The actual currency rate is calculated by using API (apilayer.com). A user can remove a selected currency, as well. The data on a form is validated. After refreshing a page (for example the next day) the actual rate will be updated.
 
-I used Redux to manage the state. I created two modules:
+I used Redux to manage the state. I have created two modules:
 1. exchange API - a module (store) for data from API
 2. wallet - a module (store) for data in localStorage
 
-I combied stores using combineReducers helper function.
+I have combied stores by using the combineReducers helper function.
 
 ```
 const rootReducers = combineReducers({
@@ -27,9 +27,8 @@ const rootReducers = combineReducers({
 })
 ```
 
-Column names, inputs and currency data are stored in json files, so it is easy to manage it.
-
-While undertaking this project, to key was to create each element in that way to possible use it in another application, so I tried to do it.
+Column names, inputs and a currency data are stored in json files, so it is easy to manage it.
+While undertaking this project, a key was to create each elements in that way that it will be  possible to use them in another application, so I tried to do it so.
 
 
 ## How to see it
@@ -59,8 +58,9 @@ When creating this project I had an opportunity to learn/practice :
 
 ### Development
 I am going to develop application by adding additional functionalities such as:
-* fetching the rate automatically based on date of buy, and a user will keep possibility to change the rate
+* fetching the rate automatically based on a date of purchasing a currency, with a user to keep possibility to change the rate of it
 * confirmation component before remove a currency
+
 
 ### Project preview
 Currency wallet
